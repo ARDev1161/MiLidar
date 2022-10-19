@@ -549,10 +549,9 @@ void processSignalStrength(int iQuad) {
   aryQuality[iQuad] = dataL | (dataM << 8);
 }
 
-void LidarWork(){
-      byte aryInvalidDataFlag[N_DATA_QUADS] = {0, 0, 0, 0}; // non-zero = INVALID_DATA_FLAG or STRENGTH_WARNING_FLAG is set
+void LidarWorker(){
+  byte aryInvalidDataFlag[N_DATA_QUADS] = {0, 0, 0, 0}; // non-zero = INVALID_DATA_FLAG or STRENGTH_WARNING_FLAG is set
 
-  sCmd.readSerial();  // check for incoming serial commands
   if (Serial1.available() > 0) {                  // read byte from LIDAR and relay to USB
     inByte = Serial1.read();                      // get incoming byte:
     if (lidar_config.raw_data)
@@ -698,7 +697,9 @@ void setup() {
 
 void loop() {
   int result;
-  LidarWork();
+
+  sCmd.readSerial();  // check for incoming serial commands
+  LidarWorker();
 //  result = imu.readId(&sensorId);
 //  if (result == 0) {
 //    Serial.println("sensorId: " + String(sensorId));
