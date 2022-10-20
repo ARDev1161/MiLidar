@@ -248,10 +248,10 @@ void setRPM() {
   }
 }
 
-void setKp() {
+double getCoeff(boolean& syntax_error){
   double sVal = 0.0;
   char *arg;
-  boolean syntax_error = false;
+  syntax_error = false;
 
   arg = sCmd.next();
   if (arg != NULL) {
@@ -265,6 +265,13 @@ void setKp() {
   if (arg != NULL) {
     syntax_error = true;
   }
+
+  return sVal;
+}
+
+void setKp() {
+  boolean syntax_error;
+  double sVal = getCoeff(syntax_error);
 
   if (syntax_error) {
     Serial.println(F(" "));
@@ -280,22 +287,8 @@ void setKp() {
 }
 
 void setKi() {
-  double sVal = 0.0;
-  char *arg;
-  boolean syntax_error = false;
-
-  arg = sCmd.next();
-  if (arg != NULL) {
-    sVal = atof(arg);    // Converts a char string to a float
-  }
-  else {
-    syntax_error = true;
-  }
-
-  arg = sCmd.next();
-  if (arg != NULL) {
-    syntax_error = true;
-  }
+  boolean syntax_error;
+  double sVal = getCoeff(syntax_error);
 
   if (syntax_error) {
     Serial.println(F(" "));
@@ -311,22 +304,8 @@ void setKi() {
 }
 
 void setKd() {
-  double sVal = 0.0;
-  char *arg;
-  boolean syntax_error = false;
-
-  arg = sCmd.next();
-  if (arg != NULL) {
-    sVal = atof(arg);    // Converts a char string to a float
-  }
-  else {
-    syntax_error = true;
-  }
-
-  arg = sCmd.next();
-  if (arg != NULL) {
-    syntax_error = true;
-  }
+  boolean syntax_error;
+  double sVal = getCoeff(syntax_error);
 
   if (syntax_error) {
     Serial.println(F(" "));
