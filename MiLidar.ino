@@ -642,7 +642,7 @@ void setup() {
 //    imu.magZOffset = -10;
 
     lidar_config = lidar_config_store.read();
-    if ((lidar_config.id != sensorId) && (lidar_config.id != 0x77)) { // verify values have been initialized
+    if (lidar_config.id != 0x77) { // verify values have been initialized
       initConfig();
     }
 
@@ -668,9 +668,7 @@ void setup() {
     showConfig();
     help();
 
-    delay(3000);
-    showRaw();
-    
+    delay(3000);    
     ledOff();
 }
 

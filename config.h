@@ -137,7 +137,7 @@ void hideAll() {
 
 void initConfig() {
   lidar_config.id = 0x77;
-  strcpy(lidar_config.version, "1.4.0");
+  strcpy(lidar_config.version, "1.4.2");
 
   lidar_config.motorPin = 10;  // pin connected N-Channel Mosfet
 
@@ -152,11 +152,11 @@ void initConfig() {
   lidar_config.Kd = 0.0;
 
   lidar_config.motor_enable = true;
-  lidar_config.raw_data = true;
-  lidar_config.show_dist = false;
-  lidar_config.show_rpm = false;
-  lidar_config.show_interval = false;
-  lidar_config.show_errors = false;
+  lidar_config.raw_data = false;
+  lidar_config.show_dist = true;
+  lidar_config.show_rpm = true;
+  lidar_config.show_interval = true;
+  lidar_config.show_errors = true;
   for (int ix = 0; ix < N_ANGLES; ix++)
     lidar_config.arrayAngles[ix] = true;
 
